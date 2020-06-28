@@ -1001,7 +1001,7 @@ sub outputGFF
 # such hash.
 
 sub getFASTAseqs {
-	my($SEQ,$FASTAentries_, my $MESSAGES) = @_;
+	my($SEQ,$FASTAentries_, $MESSAGES) = @_;
 	my $sequence;
 	my $query;
 	my $numNucleotides;
