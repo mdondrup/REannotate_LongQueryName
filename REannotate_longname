@@ -1,5 +1,4 @@
-#!/usr/bin/perl -w
-
+#!/usr/bin/env perl 
 # slightly modified by Jia-Xing Yue (yuejiaxing@gmail.com) to support for longer query names.
 
 ###################     REannotate     ###################		
@@ -60,6 +59,7 @@
 # in the RM input file.
 
 use strict;
+use warnings;
 use Getopt::Long;
 use File::Basename;
 use English;
@@ -3286,9 +3286,9 @@ sub runClustalW {
   my $dirName = dirname($infile);
   my $clustalw = basename($clustalPath,"");
   my $clustalWdir = dirname($clustalPath);
-
-  system("cp ".$clustalPath." ".$dirName."/") unless (-e $dirName."/clustalw");
-  my $command = $dirName."/".$clustalw." /PWGAPOPEN=0.5 /PWGAPEXT=0.01 /INFILE=".$fileName;
+  # for some unclear reason the binary is copied around
+  #system("cp ".$clustalPath." ".$dirName."/") unless (-e $dirName."/clustalw");
+  my $command = "$clustalPath /PWGAPOPEN=0.5 /PWGAPEXT=0.01 /INFILE=$fileName";
   system($command);
 
   $fileName =~ s/(.*)\.fasta$/$1/;	# remove .fasta extension from string in $fileName
